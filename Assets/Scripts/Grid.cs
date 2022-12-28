@@ -5,8 +5,8 @@ using UnityEngine;
 public class Grid<TGridObject>
 {
 
-    public event EventHandler<OnGridValueChangedEventArgs> OnGridValueChanged;
-    public class OnGridValueChangedEventArgs : EventArgs
+    public event EventHandler<OnGridObjectChangedEventArgs> OnGridObjectChanged;
+    public class OnGridObjectChangedEventArgs : EventArgs
     {
         public int x;
         public int y;
@@ -52,7 +52,7 @@ public class Grid<TGridObject>
             Debug.DrawLine(GetWorldPosition(0, height), GetWorldPosition(width, height), Color.white, 100f);
             Debug.DrawLine(GetWorldPosition(width, 0), GetWorldPosition(width, height), Color.white, 100f);
 
-            OnGridValueChanged += (object sender, OnGridValueChangedEventArgs eventArgs) =>
+            OnGridObjectChanged += (object sender, OnGridObjectChangedEventArgs eventArgs) =>
             {
                 debugTextArray[eventArgs.x, eventArgs.y].text = gridArray[eventArgs.x, eventArgs.y]?.ToString();
             };
@@ -99,13 +99,13 @@ public class Grid<TGridObject>
         {
             gridArray[x, y] = value;
             //  if (OnGridValueChanged != null) OnGridValueChanged(this, new OnGridValueChangedEventArgs { x = x, y = y });
-            OnGridValueChanged?.Invoke(this, new OnGridValueChangedEventArgs { x = x, y = y }); // <- shorthand
+            OnGridObjectChanged?.Invoke(this, new OnGridObjectChangedEventArgs { x = x, y = y }); // <- shorthand
         }
     }
 
     public void TriggerGridObjectChanged(int x, int y)
     {
-        OnGridValueChanged?.Invoke(this, new OnGridValueChangedEventArgs { x = x, y = y });
+        OnGridObjectChanged?.Invoke(this, new OnGridObjectChangedEventArgs { x = x, y = y });
     }
 
     public void SetGridObject(Vector3 worldPosition, TGridObject value)

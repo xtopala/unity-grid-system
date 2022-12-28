@@ -18,10 +18,10 @@ public class HeatMapGenericVisual : MonoBehaviour
         this.grid = grid;
         UpdateHeatMapVisual();
 
-        grid.OnGridValueChanged += Grid_OnGridValueChanged1;
+        grid.OnGridObjectChanged += Grid_OnGridValueChanged1;
     }
 
-    private void Grid_OnGridValueChanged1(object sender, Grid<HeatMapGridObject>.OnGridValueChangedEventArgs e)
+    private void Grid_OnGridValueChanged1(object sender, Grid<HeatMapGridObject>.OnGridObjectChangedEventArgs e)
     {
         updateMesh = true;
     }

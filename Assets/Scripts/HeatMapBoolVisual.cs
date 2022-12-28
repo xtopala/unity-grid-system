@@ -18,10 +18,10 @@ public class HeatMapBoolVisual : UnityEngine.MonoBehaviour
         this.grid = grid;
         UpdateHeatMapVisual();
 
-        grid.OnGridValueChanged += Grid_OnGridValueChanged1;
+        grid.OnGridObjectChanged += Grid_OnGridValueChanged1;
     }
 
-    private void Grid_OnGridValueChanged1(object sender, Grid<bool>.OnGridValueChangedEventArgs e)
+    private void Grid_OnGridValueChanged1(object sender, Grid<bool>.OnGridObjectChangedEventArgs e)
     {
         updateMesh = true;
     }
